@@ -1,21 +1,61 @@
 package com.cg.ovs.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Vegetable {
+	/**
+	 *This is the vegetable Id.
+	 */
 	@Id
-	private int vegId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long vegId;
+	/**
+	 *This is the vegetable Name.
+	 */
 	private String name;
+	/**
+	 *This is the type of the vegetable i.e, leafy green, root etc.
+	 */
 	private String type;
-	private String category;
+	/**
+	 *This is the price of the vegetable.
+	 */
 	private double price;
-	private int quantity;
-	public int getVegId() {
+	/**
+	 *This is the quantity in which the vegetable is bought.
+	 */
+	private int quantity;  
+	/**
+	 *Many to one Mapping with OrderDetail.
+	*/
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="orderDetail_id", nullable=false)
+	@JsonIgnore
+	
+	/**
+	 *Creating object of OrderDetail.
+	*/
+    private OrderDetail order;
+	
+	/**
+	 *Constructor.
+	*/
+	public Vegetable() {
+		
+	}
+	public Long getVegId() {
 		return vegId;
 	}
-	public void setVegId(int vegId) {
+	public void setVegId(Long vegId) {
 		this.vegId = vegId;
 	}
 	public String getName() {
@@ -30,11 +70,11 @@ public class Vegetable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getCategory() {
-		return category;
+	public OrderDetail getOrder() {
+		return order;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setOrder(OrderDetail order) {
+		this.order = order;
 	}
 	public double getPrice() {
 		return price;

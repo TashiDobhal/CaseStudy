@@ -1,8 +1,5 @@
 package com.cg.ovs.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.ovs.domain.OrderDetail;
@@ -23,7 +19,7 @@ import com.cg.ovs.service.MapValidationErrorService;
 import com.cg.ovs.service.OrderService;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api")
 public class OrderController
 {
 @Autowired
